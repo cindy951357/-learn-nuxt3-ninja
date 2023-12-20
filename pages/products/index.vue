@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-
+    definePageMeta({
+        layout: 'products'
+    });
 </script>
 
 <template>
