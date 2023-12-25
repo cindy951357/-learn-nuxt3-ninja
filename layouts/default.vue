@@ -13,6 +13,9 @@
                 <li>
                     <NuxtLink to="/products" class="btn">Products</NuxtLink>
                 </li>
+                <li>
+                    <el-button>I am ElButton</el-button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -21,6 +24,13 @@
     </div>
 </div>
 </template>
+
+<script lang="ts">
+import { ElButton } from 'element-plus';
+export default {
+    components: { ElButton },
+}
+</script>
 
 <style scoped>
 .router-link-exact-active {
