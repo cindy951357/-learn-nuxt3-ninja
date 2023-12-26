@@ -1,9 +1,9 @@
 <template>
     <el-menu
-      default-active="1"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
+      @click="handleMenuClick"
     >
         <el-menu-item index="1">
             <el-icon><house /></el-icon>
@@ -56,6 +56,9 @@
     Setting,
     House,
   } from '@element-plus/icons-vue'
+  import { useModalStore } from '@/stores/modal'
+
+const modalStore = useModalStore();
 
   const handleOpen = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
@@ -63,15 +66,26 @@
   const handleClose = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
   }
+
+  const handleMenuClick = () => {
+    if (modalStore.isOpen) {
+        modalStore.close();
+    }
+  }
+
   </script>
   
   <style lang="scss">
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 100vh;
+    background-color: gray;
   }
 
   .el-menu {
+    .el-menu-item {
+        background-color: #433d57;
+    }
     
     .el-menu-item, .el-sub-menu, .el-sub-menu__title {
         color: white;
