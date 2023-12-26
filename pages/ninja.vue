@@ -1,9 +1,21 @@
 <script lang="ts" setup>
-
+definePageMeta({
+        layout: 'ninja'
+    });
 </script>
 
 <template>
     <h2>Home</h2>
+    <p>hahahahahaha
+        hahaha
+        hahaha
+        hahaha
+    </p>
+    <p>hahahahahaha
+        hahaha
+        hahaha
+        hahaha
+    </p>
 </template>
 
 <style scoped>
