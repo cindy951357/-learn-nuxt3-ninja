@@ -31,5 +31,9 @@ import { Share, User, Service } from '@element-plus/icons-vue';
 }
 .icon-group {
     color: white;
+    .el-icon svg{
+        width: 30px;
+        height: 30px;
+    }
 }
 </style>

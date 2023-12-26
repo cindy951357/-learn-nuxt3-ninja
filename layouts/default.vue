@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-container">
-        <header>
+        <header class=".htmlheader">
             <Header/>
             <div class="hamburger"><el-icon @click="openModal"><more /></el-icon></div>
         </header>
@@ -45,8 +45,8 @@ header {
   display: flex;
   height: 52px;
   justify-content: space-between;
+  background: linear-gradient(90deg, rgba(208,188,179,1) 0%, rgba(212,175,223,1) 50%, rgba(180,228,211,1) 100%);
 }
-
 
 .hamburger {
     display: flex;
@@ -68,7 +68,7 @@ header {
     align-items: center;
 }
 
-.footer, header, .maincontent {
+.footer, .maincontent {
     background-color: #5c5c5c;
 }
 

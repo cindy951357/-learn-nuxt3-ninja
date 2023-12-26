@@ -26,6 +26,14 @@ const imgArr = [P01, P02, P03, P04, P05];
             </el-carousel>
         </div>
     </div>
+    <div class="progress-group">
+      <div class="progress-item"><el-progress type="circle" :percentage="0" /></div>
+      <div class="progress-item"><el-progress type="circle" :percentage="25" /></div>
+      <div class="progress-item"><el-progress type="circle" :percentage="100" status="success" /></div>
+      <div class="progress-item"><el-progress type="circle" :percentage="70" status="warning" /></div>
+      <div class="progress-item"><el-progress type="circle" :percentage="50" status="exception" /></div>
+      <div class="progress-item"><el-progress type="circle" :percentage="30" status="success" /></div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -58,5 +66,20 @@ p {
 
 .el-img {
   padding-top: 20px;
+}
+
+.progress-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  .progress-item {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 670px) {
+  .progress-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 }
 </style>
