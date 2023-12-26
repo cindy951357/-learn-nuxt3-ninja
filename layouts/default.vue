@@ -1,21 +1,17 @@
 <template>
-  <div class="common-layout">
-    <el-container>
-      <el-aside width="200px"><Sidebar/></el-aside>
-      <el-container>
-        <el-header><Header/></el-header>
+    <div class="container">
+        <header><Header/></header>
+        <aside class="side" width="200px"><Sidebar/></aside>
+        <div class="content">
         <el-main><div class="border-rounded"><slot></slot></div></el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
-    </el-container>
-  </div>
+        <div class="footer">Footer</div>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
 import Header from '../components/Header.vue';
 import Sidebar from '../components/Sidebar.vue';
-
-
 
 export default {
     components: { 
@@ -25,60 +21,67 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.el-container, .el-menu {
-    height: 100vh;
-}
-.main-head, .el-header {
+<style lang="scss">
+
+header {
   grid-area: header;
 }
-.content, .el-main {
+.content {
   grid-area: content;
 
 }
-.side, .el-aside {
+.side {
   grid-area: sidebar;
+  &, .el-menu {
+    background-color: #433d57;
+  }
 }
 
-.el-footer, .el-header, .el-main {
-    background-color: #5c5c5c;
-}
-
-.el-footer {
+.footer {
     grid-area: footer;
 }
 
-.wrapper {
+.footer, header, .content {
+    background-color: #5c5c5c;
+}
+
+.container {
   display: grid;
   gap: 20px;
   grid-template-areas:
     "header"
-    "content"
     "sidebar"
+    "content"    
     "footer";
-
-    .el-menu {
-        height: unset;
-    }
+   
 }
+
 .border-rounded {
     border-radius: 10px;
     background: white;
     height: 100%;
+    padding: 10px;
 }
+
 @media (min-width: 500px) {
-  .wrapper {
-    grid-template-columns: 1fr 3fr;
+  .container {
+    grid-template-columns: 200px auto;
     grid-template-areas:
       "header  header"
       "sidebar content"
       "footer  footer";
   }
+  .container, .side {
+        height: 80vh;
+    }
+    .side {
+        width: 200px;
+    }
 }
 
 @media (min-width: 700px) {
-  .wrapper {
-    grid-template-columns: 1fr 5fr;
+  .container {
+    grid-template-columns: 200px 5fr;
     grid-template-areas:
       "header   header "
       "sidebar  content"
@@ -86,4 +89,5 @@ export default {
       "footer   footer ";
   }
 }
+
 </style>

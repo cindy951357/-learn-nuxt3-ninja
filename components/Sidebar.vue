@@ -1,40 +1,49 @@
 <template>
     <el-menu
-      default-active="2"
+      default-active="1"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
       @open="handleOpen"
       @close="handleClose"
     >
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>Product</span>
-        </template>
-        <el-menu-item-group>
-          <template #title><span>Group One</span></template>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title><span>item four</span></template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
+        <el-menu-item index="1">
+            <el-icon><house /></el-icon>
+            <template #title><NuxtLink to="/">Home</NuxtLink></template>
+        </el-menu-item>
+
+        <el-sub-menu index="2">
+            <template #title>
+                <el-icon><location /></el-icon>
+                <span>Navigator One</span>
+            </template>
+
+            <el-menu-item-group>
+                <template #title><span>Group One</span></template>
+                <el-menu-item index="2-1">item one</el-menu-item>
+                <el-menu-item index="2-2">item two</el-menu-item>
+            </el-menu-item-group>
+
+            <el-menu-item-group title="Group Two">
+                <el-menu-item index="2-3">item three</el-menu-item>
+            </el-menu-item-group>
+
+            <el-sub-menu index="2-4">
+                <template #title><span>item four</span></template>
+                <el-menu-item index="2-4-1">item one</el-menu-item>
+            </el-sub-menu>
+
         </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
+      <el-menu-item index="3">
         <el-icon><icon-menu /></el-icon>
         <template #title><NuxtLink to="/about">About</NuxtLink></template>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="4">
         <el-icon><document /></el-icon>
         <template #title>Contact</template>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="5">
         <el-icon><setting /></el-icon>
-        <template #title>Setting</template>
+        <template #title><NuxtLink to="/products">Series 1</NuxtLink></template>
       </el-menu-item>
     </el-menu>
   </template>
@@ -46,6 +55,7 @@
     Menu as IconMenu,
     Location,
     Setting,
+    House,
   } from '@element-plus/icons-vue'
   
   const handleOpen = (key: string, keyPath: string[]) => {
@@ -63,9 +73,13 @@
   }
 
   .el-menu {
-    background-color: #433d57;
-    .el-menu-item, .el-sub-menu {
+    
+    .el-menu-item, .el-sub-menu, .el-sub-menu__title {
         color: white;
+
+        &:hover {
+            color: black;
+        }
     }    
   }
   </style>
