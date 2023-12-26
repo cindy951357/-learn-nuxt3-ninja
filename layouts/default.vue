@@ -1,93 +1,111 @@
 <template>
-    <div class="container">
-        <header><Header/></header>
+    <div class="dashboard-container">
+        <header>
+            <Header/>
+            <div class="hamburger"><el-icon><more /></el-icon></div>
+        </header>
         <aside class="side" width="200px"><Sidebar/></aside>
-        <div class="content">
-        <el-main><div class="border-rounded"><slot></slot></div></el-main>
-        <div class="footer">Footer</div>
+        <div class="maincontent">
+            <div class="border-rounded">
+                <slot></slot>
+            </div>
         </div>
+        <div class="footer">Footer</div>
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Header from '../components/Header.vue';
 import Sidebar from '../components/Sidebar.vue';
+import { More, } from '@element-plus/icons-vue';
 
-export default {
-    components: { 
-        Header,
-        Sidebar,
-     },
-}
 </script>
 
 <style lang="scss">
+html, body, .dashboard-container {
+    height: 100vh;
+    min-width: 300px;
+}
 
 header {
   grid-area: header;
+  display: flex;
+  justify-content: space-between;
 }
-.content {
-  grid-area: content;
 
+.hamburger {
+    display: flex;
+    padding: 10px;
+    color: white;
 }
-.side {
-  grid-area: sidebar;
-  &, .el-menu {
-    background-color: #433d57;
-  }
+
+.maincontent {
+  grid-area: maincontent;
+  overflow-y: scroll;
 }
 
 .footer {
     grid-area: footer;
 }
 
-.footer, header, .content {
+.footer, header, .maincontent {
     background-color: #5c5c5c;
 }
 
-.container {
-  display: grid;
-  gap: 20px;
-  grid-template-areas:
-    "header"
-    "sidebar"
-    "content"    
-    "footer";
-   
+
+@media (max-width: 350px) {
+    .side {
+        display: none;
+    }
+
+    .dashboard-container {
+        display: grid;
+        grid-template-rows: 52px 4fr 52px;
+        grid-template-areas:
+            "header"
+            "maincontent"    
+            "footer";   
+    }
 }
+
 
 .border-rounded {
     border-radius: 10px;
     background: white;
     height: 100%;
     padding: 10px;
+    overflow-y: scroll;
 }
 
-@media (min-width: 500px) {
-  .container {
-    grid-template-columns: 200px auto;
-    grid-template-areas:
-      "header  header"
-      "sidebar content"
-      "footer  footer";
-  }
-  .container, .side {
-        height: 80vh;
+@media (min-width: 400px) {
+    .hamburger {
+        display: none;
     }
     .side {
-        width: 200px;
+         display: unset;
+         grid-area: sidebar;
+            &, .el-menu {
+                background-color: #433d57;
+            }
     }
+  .dashboard-container { 
+    display: grid;
+    grid-template-columns: 200px 5fr;
+    grid-template-rows: 52px 4fr 52px;
+    grid-template-areas:
+      "sidebar  header"
+      "sidebar maincontent"
+      "sidebar maincontent"
+      "sidebar maincontent"
+      "sidebar maincontent"
+      "sidebar maincontent"
+      "sidebar  footer";
+  }
 }
 
-@media (min-width: 700px) {
-  .container {
-    grid-template-columns: 200px 5fr;
-    grid-template-areas:
-      "header   header "
-      "sidebar  content"
-      "sidebar  content"
-      "footer   footer ";
-  }
+.el-icon {
+    width: 20px;
+    height: 20px;
 }
 
 </style>
