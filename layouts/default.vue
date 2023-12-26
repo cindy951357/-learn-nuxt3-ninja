@@ -4,7 +4,7 @@
       <el-aside width="200px"><Sidebar/></el-aside>
       <el-container>
         <el-header><Header/></el-header>
-        <el-main><slot></slot></el-main>
+        <el-main><div class="border-rounded"><slot></slot></div></el-main>
         <el-footer>Footer</el-footer>
       </el-container>
     </el-container>
@@ -29,14 +29,23 @@ export default {
 .el-container, .el-menu {
     height: 100vh;
 }
-.main-head {
+.main-head, .el-header {
   grid-area: header;
 }
-.content {
+.content, .el-main {
   grid-area: content;
+
 }
-.side {
+.side, .el-aside {
   grid-area: sidebar;
+}
+
+.el-footer, .el-header, .el-main {
+    background-color: #5c5c5c;
+}
+
+.el-footer {
+    grid-area: footer;
 }
 
 .wrapper {
@@ -47,8 +56,16 @@ export default {
     "content"
     "sidebar"
     "footer";
-}
 
+    .el-menu {
+        height: unset;
+    }
+}
+.border-rounded {
+    border-radius: 10px;
+    background: white;
+    height: 100%;
+}
 @media (min-width: 500px) {
   .wrapper {
     grid-template-columns: 1fr 3fr;

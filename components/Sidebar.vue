@@ -28,7 +28,7 @@
         <el-icon><icon-menu /></el-icon>
         <template #title><NuxtLink to="/about">About</NuxtLink></template>
       </el-menu-item>
-      <el-menu-item index="3" disabled>
+      <el-menu-item index="3">
         <el-icon><document /></el-icon>
         <template #title>Contact</template>
       </el-menu-item>
@@ -56,9 +56,16 @@
   }
   </script>
   
-  <style>
+  <style lang="scss">
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
+  }
+
+  .el-menu {
+    background-color: #433d57;
+    .el-menu-item, .el-sub-menu {
+        color: white;
+    }    
   }
   </style>
