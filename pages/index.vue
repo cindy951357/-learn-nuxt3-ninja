@@ -1,4 +1,11 @@
 <script lang="ts" setup>
+import P01 from "@/assets/image/p01.jpg";
+import P02 from "@/assets/image/p02.jpg";
+import P03 from "@/assets/image/p03.jpg";
+import P04 from "@/assets/image/p04.jpg";
+import P05 from "@/assets/image/p05.jpg";
+
+const imgArr = [P01, P02, P03, P04, P05];
 
 </script>
 
@@ -6,15 +13,14 @@
     <div class="carousel">
         <div class="block text-center">
             <el-carousel height="150px">
-            <el-carousel-item v-for="item in 4" :key="item">
-                <h3 class="small justify-center" text="2xl">{{ item }}</h3>
+            <el-carousel-item v-for="imgItem, index in imgArr" :key="index">
+               <el-image style="width: 100px; height: 100px" :src="imgItem" fit="cover" />
             </el-carousel-item>
             </el-carousel>
         </div>
         <div class="block text-center" m="t-4">
-            <span class="demonstration">Switch when indicator is clicked</span>
             <el-carousel trigger="click" height="150px">
-            <el-carousel-item v-for="item in 4" :key="item">
+            <el-carousel-item v-for="item in imgArr.length" :key="item">
                 <h3 class="small justify-center" text="2xl">{{ item }}</h3>
             </el-carousel-item>
             </el-carousel>
@@ -48,5 +54,9 @@ p {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+.el-img {
+  padding-top: 20px;
 }
 </style>
