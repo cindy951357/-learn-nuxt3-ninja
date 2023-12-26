@@ -22,13 +22,20 @@
     <div class="container mx-auto p-4">
         <slot></slot>
     </div>
+
 </div>
 </template>
 
 <script lang="ts">
-import { ElButton } from 'element-plus';
+import { ref } from 'vue'
+import { ElButton, ElMessageBox } from 'element-plus';
+
+
+
 export default {
-    components: { ElButton },
+    components: { 
+        ElButton,
+     },
 }
 </script>
 
