@@ -25,7 +25,8 @@
 import Header from '../components/Header.vue';
 import Sidebar from '../components/Sidebar.vue';
 import { More, Close } from '@element-plus/icons-vue';
-import { useModalStore } from '@/stores/modal'
+import { useModalStore } from '@/stores/modal';
+
 
 const modalStore = useModalStore();
 

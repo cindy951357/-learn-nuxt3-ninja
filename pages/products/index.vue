@@ -1,6 +1,10 @@
 <script lang="ts" setup>
+interface Product {
+  id: number;
+  title: string;
+}
     // fetch the products
-    const { data: products } = await useFetch('https://fakestoreapi.com/products');
+    const { data: products } : { data: Array<Product> } = await useFetch('https://fakestoreapi.com/products');
 
 </script>
 
