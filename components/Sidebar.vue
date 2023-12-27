@@ -1,6 +1,19 @@
 <template>
+  <div class="sidebar" id="my_sidebar" ref="sidebarRef">
+    <button class="toggle-sidebar-btn" @click="toggleSidebar">
+      <span v-if="sidebarStore.isExpanded">
+        <el-icon><back/>
+      </el-icon>
+      </span>
+      <span v-else>
+        <el-icon><right />
+      </el-icon>
+      </span>
+      
+    </button>
     <el-menu
       class="el-menu-vertical-demo"
+      :collapse="!sidebarStore.isExpanded"
       @open="handleOpen"
       @close="handleClose"
       @click="handleMenuClick"
@@ -45,20 +58,26 @@
         <template #title><NuxtLink to="/products">Series 1</NuxtLink></template>
       </el-menu-item>
     </el-menu>
+  </div>
   </template>
   
   <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue';
   import {
     Document,
     Menu as IconMenu,
     Location,
     Setting,
     House,
-  } from '@element-plus/icons-vue'
-  import { useModalStore } from '@/stores/modal'
+    Right,
+    Back
+  } from '@element-plus/icons-vue';
+  import { useModalStore } from '@/stores/modal';
+  import { useSidebarStore } from '@/stores/sidebar';
 
 const modalStore = useModalStore();
+const sidebarStore = useSidebarStore();
+const sidebarRef = ref<any>(null);
 
   const handleOpen = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
@@ -72,6 +91,18 @@ const modalStore = useModalStore();
         modalStore.close();
     }
   }
+
+  const toggleSidebar = () => {
+    if (sidebarStore.isExpanded){
+      sidebarStore.collapseSidebar();
+    } else {
+      sidebarStore.expandSidebar();
+    }
+  }
+
+  onMounted(() => {
+    sidebarStore.sidebarRef = sidebarRef;
+});
 
   </script>
   
@@ -94,5 +125,22 @@ const modalStore = useModalStore();
             color: black;
         }
     }    
+  }
+
+  .sidebar {
+    position: relative;
+  }
+  .el-menu--vertical, .sidebar, .toggle-sidebar-btn {
+    transition: width left 2s;
+  }
+
+  .toggle-sidebar-btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 185px;
+    top: 40px;
+    background-color: white;
+    z-index: 1;
   }
   </style>

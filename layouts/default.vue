@@ -2,15 +2,15 @@
     <div class="dashboard-container">
         <header class=".htmlheader">
             <Header/>
-            <div class="hamburger"><el-icon @click="openModal"><more /></el-icon></div>
+            <div class="hamburger"><el-icon @click="openModal"><more /></el-icon></div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         </header>
-        <aside class="side" width="200px"><Sidebar/></aside>
+        <aside class="side"><Sidebar/></aside>
         <div class="maincontent">
             <div class="border-rounded">
                 <slot></slot>
             </div>
         </div>
-        <div class="footer">Footer</div>
+        <div class="footer">Footer Footer Footer Footer</div>
     </div>
     <div class="modal-overlay" v-show="modalStore.isOpen">
         <div class="modal">
@@ -62,7 +62,7 @@ header {
 .footer {
     grid-area: footer;
     padding: 10px;
-    color: gray;
+    color: lightgray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,7 +110,7 @@ header {
     }
   .dashboard-container { 
     display: grid;
-    grid-template-columns: 200px 5fr;
+    grid-template-columns: auto 5fr;
     grid-template-rows: 52px 8fr 52px;
     grid-template-areas:
       "sidebar  header"

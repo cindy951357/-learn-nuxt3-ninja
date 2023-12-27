@@ -73,6 +73,9 @@ p {
   grid-template-columns: 1fr 1fr 1fr;
   .progress-item {
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
