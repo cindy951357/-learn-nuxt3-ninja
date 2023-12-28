@@ -24,7 +24,10 @@ import { Share, User, Service } from '@element-plus/icons-vue';
     padding: 10px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+
+    @media (min-width: 470px) {
+        justify-content: space-between;
+    }    
 }
 .brand-name {
     color: white;

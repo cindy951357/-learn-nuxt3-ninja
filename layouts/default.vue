@@ -1,8 +1,12 @@
 <template>
     <div class="dashboard-container">
         <header class=".htmlheader">
-            <Header/>
-            <div class="hamburger"><el-icon @click="openModal"><more /></el-icon></div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            <div class="full-width">
+                <div id="icon_hamburger"><el-icon @click="openModal"><more /></el-icon></div> 
+            </div>
+            <div class="full-width">  
+                <Header/>    
+            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         </header>
         <aside class="side"><Sidebar/></aside>
         <div class="maincontent">
@@ -49,11 +53,12 @@ header {
   background: linear-gradient(90deg, rgba(208,188,179,1) 0%, rgba(212,175,223,1) 50%, rgba(180,228,211,1) 100%);
 }
 
-.hamburger {
+.htmlheader {
     display: flex;
-    padding: 10px;
-    color: white;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .maincontent {
   grid-area: maincontent;
@@ -86,6 +91,41 @@ header {
             "header"
             "maincontent"    
             "footer";   
+    }
+    .htmlheader {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .full-width {
+        position: absolute;
+        width: 100%;
+        display: flex;
+
+        .header {
+            justify-self: center;
+            justify-content: center;
+            z-index: 0;
+            position: relative;
+
+            .icon-group {
+                position: absolute;
+                top: 10px;
+                right: 5px;
+            }
+        }
+    }
+
+    #icon_hamburger {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 10px;
+        top: 10px;
+        color: white;
+        z-index: 2;
     }
 }
 
