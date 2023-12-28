@@ -18,37 +18,39 @@
       @close="handleClose"
       @click="handleMenuClick"
     >
-        <el-menu-item index="1">
+        <el-menu-item index="0">
             <el-icon><house /></el-icon>
             <template #title><NuxtLink to="/">Home</NuxtLink></template>
         </el-menu-item>
-        <div v-for="(item, i) in MainMenuConfig" :key="i">
+        <template v-for="(item, i) in MainMenuConfig" :key="i">
           <div v-if="item.heading">
-            <el-menu-item  :index="`${i}-2`">
+            <el-menu-item  :index="`${i+1}`">
                 <template #title>{{ item.heading }}</template>
             </el-menu-item>            
           </div>
-          <el-sub-menu :index="`${i}-2`">
-            <div v-for="(secondItem, j) in item.pages" :key="j">
-              <div v-if="secondItem.heading">
-                <el-menu-item :index="`${i+2}-${j}`"><NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink></el-menu-item>
-              </div>
-              <div v-if="secondItem.sectionTitle && secondItem.route">
+          <el-sub-menu :index="`${i}`">
+            <template v-for="(secondItem, j) in item.pages" :key="j">
+              <template v-if="secondItem.heading">
+                <el-menu-item :index="`${i}-${j}`"><NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink></el-menu-item>
+              </template>
+              <template v-if="secondItem.sectionTitle && secondItem.route">
                 <span class="second-item-section-title">{{ secondItem.sectionTitle }}</span>
-              </div>
+              </template>
 
-              <el-sub-menu :index="`${i}-${j}`">
-                <div v-for="(thirdItem, k) in secondItem.sub" :key="k">
-                  <el-menu-item-group>
-                    <template v-if="thirdItem.heading" #title>
-                      <el-menu-item :index="`${i+2}-${j}-${k}`"><NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink></el-menu-item>
+               <el-sub-menu :index="`${i}-${j}`">
+                <template v-for="(thirdItem, k) in secondItem.sub" :key="k">
+                   <el-menu-item-group>
+                    <template v-if="thirdItem.heading">
+                      <el-menu-item :index="`${i}-${j}-${k}`">
+                        <NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink>
+                      </el-menu-item>
                     </template>
                   </el-menu-item-group>
-                </div>
-              </el-sub-menu>
-            </div>
+                </template>
+              </el-sub-menu> 
+            </template>
           </el-sub-menu>
-        </div>
+        </template>
 
 <!--         
 
@@ -160,6 +162,7 @@ const sidebarRef = ref<any>(null);
 
   .sidebar {
     position: relative;
+    height: 100vh;
   }
   .el-menu--vertical, .sidebar, .toggle-sidebar-btn {
     transition: width left 2s;
