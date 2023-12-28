@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 export const useSidebarStore = defineStore('Sidebar', {
     state: () => ({ 
         sidebarRef: null,
-        isExpanded: boolean : true,
+        isExpanded: true,
      }),
     getters: {
     

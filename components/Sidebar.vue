@@ -22,6 +22,35 @@
             <el-icon><house /></el-icon>
             <template #title><NuxtLink to="/">Home</NuxtLink></template>
         </el-menu-item>
+        <!-- first for -->
+        <template v-for="(item, i) in MainMenuConfig" :key="i">
+          <div v-if="item.heading">
+            <el-menu-item>
+                <template #title><el-menu-item>{{ item.heading }}</el-menu-item></template>
+                
+            </el-menu-item>            
+          </div>
+          <!-- second for -->
+          <el-sub-menu>
+            <template v-for="(secondItem, j) in item.pages" :key="j">
+              <template v-if="secondItem.heading">
+                <NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink>
+              </template>
+              <template v-if="secondItem.sectionTitle && secondItem.route">
+                <el-menu-item>{{ secondItem.sectionTitle }}</el-menu-item>
+              </template>
+
+              <!-- third for -->
+              <template v-for="(thirdItem, k) in secondItem.sub" :key="k">
+                <div v-if="thirdItem.heading">
+                  <el-menu-item ><NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink></el-menu-item>
+                </div>
+              </template>
+            </template>
+          </el-sub-menu>
+        </template>
+
+        
 
         <el-sub-menu index="1">
             <template #title>
@@ -63,6 +92,7 @@
   
   <script lang="ts" setup>
   import { onMounted, ref } from 'vue';
+  import MainMenuConfig from "@/data/MenuData";
   import {
     Document,
     Menu as IconMenu,

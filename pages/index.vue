@@ -5,7 +5,7 @@ import P03 from "@/assets/image/p03.jpg";
 import P04 from "@/assets/image/p04.jpg";
 import P05 from "@/assets/image/p05.jpg";
 
-const imgArr = [P01, P02, P03, P04, P05];
+const imgArr: Array<String> = [P01, P02, P03, P04, P05];
 
 </script>
 
