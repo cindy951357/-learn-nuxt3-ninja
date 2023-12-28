@@ -37,13 +37,15 @@
                 <span class="second-item-section-title">{{ secondItem.sectionTitle }}</span>
               </div>
 
-              <div v-for="(thirdItem, k) in secondItem.sub" :key="k">
-                <el-menu-item-group>
-                  <template v-if="thirdItem.heading" #title>
-                    <el-menu-item :index="`${i+2}-${j}-${k}`"><NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink></el-menu-item>
-                  </template>
-                </el-menu-item-group>
-              </div>
+              <el-sub-menu :index="`${i}-${j}`">
+                <div v-for="(thirdItem, k) in secondItem.sub" :key="k">
+                  <el-menu-item-group>
+                    <template v-if="thirdItem.heading" #title>
+                      <el-menu-item :index="`${i+2}-${j}-${k}`"><NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink></el-menu-item>
+                    </template>
+                  </el-menu-item-group>
+                </div>
+              </el-sub-menu>
             </div>
           </el-sub-menu>
         </div>
