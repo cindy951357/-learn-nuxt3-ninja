@@ -22,35 +22,33 @@
             <el-icon><house /></el-icon>
             <template #title><NuxtLink to="/">Home</NuxtLink></template>
         </el-menu-item>
-        <!-- first for -->
-        <template v-for="(item, i) in MainMenuConfig" :key="i">
+        <div v-for="(item, i) in MainMenuConfig" :key="i">
           <div v-if="item.heading">
-            <el-menu-item>
-                <template #title><el-menu-item>{{ item.heading }}</el-menu-item></template>
-                
+            <el-menu-item  :index="`${i}-2`">
+                <template #title>{{ item.heading }}</template>
             </el-menu-item>            
           </div>
-          <!-- second for -->
-          <el-sub-menu>
-            <template v-for="(secondItem, j) in item.pages" :key="j">
-              <template v-if="secondItem.heading">
-                <NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink>
-              </template>
-              <template v-if="secondItem.sectionTitle && secondItem.route">
-                <el-menu-item>{{ secondItem.sectionTitle }}</el-menu-item>
-              </template>
+          <el-sub-menu :index="`${i}-2`">
+            <div v-for="(secondItem, j) in item.pages" :key="j">
+              <div v-if="secondItem.heading">
+                <el-menu-item :index="`${i+2}-${j}`"><NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink></el-menu-item>
+              </div>
+              <div v-if="secondItem.sectionTitle && secondItem.route">
+                <span class="second-item-section-title">{{ secondItem.sectionTitle }}</span>
+              </div>
 
-              <!-- third for -->
-              <template v-for="(thirdItem, k) in secondItem.sub" :key="k">
-                <div v-if="thirdItem.heading">
-                  <el-menu-item ><NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink></el-menu-item>
-                </div>
-              </template>
-            </template>
+              <div v-for="(thirdItem, k) in secondItem.sub" :key="k">
+                <el-menu-item-group>
+                  <template v-if="thirdItem.heading" #title>
+                    <el-menu-item :index="`${i+2}-${j}-${k}`"><NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink></el-menu-item>
+                  </template>
+                </el-menu-item-group>
+              </div>
+            </div>
           </el-sub-menu>
-        </template>
+        </div>
 
-        
+<!--         
 
         <el-sub-menu index="1">
             <template #title>
@@ -85,7 +83,7 @@
       <el-menu-item index="5">
         <el-icon><setting /></el-icon>
         <template #title><NuxtLink to="/products">Series 1</NuxtLink></template>
-      </el-menu-item>
+      </el-menu-item> -->
     </el-menu>
   </div>
   </template>
@@ -139,8 +137,9 @@ const sidebarRef = ref<any>(null);
   <style lang="scss">
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
-    min-height: 100vh;
+    height: 100vh;
     background-color: gray;
+    overflow-y: scroll;
   }
 
   .el-menu {
@@ -172,5 +171,9 @@ const sidebarRef = ref<any>(null);
     top: 40px;
     background-color: white;
     z-index: 1;
+  }
+
+  .second-item-section-title {
+    color: white;
   }
   </style>
