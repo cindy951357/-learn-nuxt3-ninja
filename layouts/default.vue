@@ -145,7 +145,7 @@ header {
   left: 0;
   right: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #00000085;
 
   & .modal {

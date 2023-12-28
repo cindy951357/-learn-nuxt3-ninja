@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar" id="my_sidebar" ref="sidebarRef">
-    <button class="toggle-sidebar-btn" @click="toggleSidebar">
+    <button v-if="!modalStore.isOpen" class="toggle-sidebar-btn" @click="toggleSidebar">
       <span v-if="sidebarStore.isExpanded">
         <el-icon><back/>
       </el-icon>
@@ -13,18 +13,18 @@
     </button>
     <el-menu
       class="el-menu-vertical-demo"
-      :collapse="!sidebarStore.isExpanded"
+      :collapse="!modalStore.isOpen || !sidebarStore.isExpanded"
       @open="handleOpen"
       @close="handleClose"
-      @click="handleMenuClick"
+      
     >
-        <el-menu-item index="0">
+        <el-menu-item index="0" @click="handleMenuClick">
             <el-icon><house /></el-icon>
             <template #title><NuxtLink to="/">Home</NuxtLink></template>
         </el-menu-item>
         <template v-for="(item, i) in MainMenuConfig" :key="i">
           <div v-if="item.heading" class="first-item">
-            <el-menu-item  :index="`${i}`">
+            <el-menu-item  :index="`${i}`" @click="handleMenuClick">
                 <template #title>{{ item.heading }}</template>
             </el-menu-item>            
           </div>
@@ -32,7 +32,7 @@
             <template #title>{{ item.heading }}</template>
             <template v-for="(secondItem, j) in item.pages" :key="j">
               <template v-if="secondItem.heading">
-                <el-menu-item :index="`${i}-${j}`"><NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink></el-menu-item>
+                <el-menu-item :index="`${i}-${j}`" @click="handleMenuClick"><NuxtLink to="/products">{{ secondItem.heading }}</NuxtLink></el-menu-item>
               </template>
               <template v-if="secondItem.sectionTitle && secondItem.route">
                 <span class="second-item-section-title">{{ secondItem.sectionTitle }}</span>
@@ -44,7 +44,7 @@
                    <el-menu-item-group>
                     <template v-if="thirdItem.heading">
                       <el-menu-item :index="`${i}-${j}-${k}`">
-                        <NuxtLink :to="thirdItem.route">{{ thirdItem.heading }}</NuxtLink>
+                        <NuxtLink to="/products" @click="handleMenuClick">{{ thirdItem.heading }}</NuxtLink>
                       </el-menu-item>
                     </template>
                   </el-menu-item-group>
