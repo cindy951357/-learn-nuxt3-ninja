@@ -13,7 +13,7 @@
     </button>
     <el-menu
       class="el-menu-vertical-demo"
-      :collapse="!modalStore.isOpen || !sidebarStore.isExpanded"
+      :collapse="!modalStore.isOpen && !sidebarStore.isExpanded"
       @open="handleOpen"
       @close="handleClose"
       
@@ -134,9 +134,6 @@ const sidebarRef = ref<any>(null);
     }
   }
 
-  onMounted(() => {
-    sidebarStore.sidebarRef = sidebarRef;
-});
 
   </script>
   

@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard-container">
         <header class=".htmlheader">
-            <div class="full-width">
+            <div class="full-width hamburger">
                 <div id="icon_hamburger"><el-icon @click="openModal"><more /></el-icon></div> 
             </div>
             <div class="full-width">  
@@ -78,6 +78,10 @@ header {
     background-color: #5c5c5c;
 }
 
+.full-width {
+    width: 100%;
+}
+
 
 @media (max-width: 470px) {
     .side {
@@ -100,8 +104,7 @@ header {
     }
 
     .full-width {
-        position: absolute;
-        width: 100%;
+        position: absolute;        
         display: flex;
 
         .header {
@@ -187,6 +190,7 @@ header {
   display: flex;
   justify-content: flex-start;
   background-color: #00000085;
+  z-index: 3;
 
   & .modal {
     overflow-y: scroll;
