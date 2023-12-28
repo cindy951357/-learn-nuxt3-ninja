@@ -29,6 +29,7 @@
             </el-menu-item>            
           </div>
           <el-sub-menu v-if="item.pages" :index="`${i}`">
+            <template #title>{{ item.heading }}</template>
             <template v-for="(secondItem, j) in item.pages" :key="j">
               <template v-if="secondItem.heading">
                 <el-menu-item :index="`${i}-${j}`"><NuxtLink :to="secondItem.route">{{ secondItem.heading }}</NuxtLink></el-menu-item>
@@ -38,6 +39,7 @@
               </template>
 
                <el-sub-menu v-if="secondItem.sub" :index="`${i}-${j}`">
+                <template #title>{{ secondItem.sectionTitle }}</template>
                 <template v-for="(thirdItem, k) in secondItem.sub" :key="k">
                    <el-menu-item-group>
                     <template v-if="thirdItem.heading">
