@@ -23,7 +23,7 @@
             <template #title><NuxtLink to="/">Home</NuxtLink></template>
         </el-menu-item>
         <template v-for="(item, i) in MainMenuConfig" :key="i">
-          <div v-if="item.heading" class="first-item">
+          <div v-if="!item.pages && item.heading" class="first-item">
             <el-menu-item  :index="`${i}`" @click="handleMenuClick">
                 <template #title>{{ item.heading }}</template>
             </el-menu-item>            
@@ -34,7 +34,7 @@
               <template v-if="secondItem.heading">
                 <el-menu-item :index="`${i}-${j}`" @click="handleMenuClick"><NuxtLink to="/products">{{ secondItem.heading }}</NuxtLink></el-menu-item>
               </template>
-              <template v-if="secondItem.sectionTitle && secondItem.route">
+              <template v-if="secondItem.sectionTitle && secondItem.route && !secondItem.sub">
                 <span class="second-item-section-title">{{ secondItem.sectionTitle }}</span>
               </template>
 

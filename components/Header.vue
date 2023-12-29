@@ -58,5 +58,6 @@ const toggleUserPopup = () => {
 .popup-wrapper {
     z-index: 1000;
     left: calc(-400px + 30px);
+    top: 40px;
 }
 </style>
